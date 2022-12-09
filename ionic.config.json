@@ -1,0 +1,7 @@
+{
+  "name": "ThePennyPincherApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
