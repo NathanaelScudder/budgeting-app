@@ -1,0 +1,29 @@
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <h1>{{label}}</h1>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="8">
+      <ion-progress-bar style="height: 10px" [value]="percentage" [type]="progressType"></ion-progress-bar>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item class="money-text-area" lines="none">
+        <ion-icon name="logo-usd" slot="start" size="small"></ion-icon>
+        <ion-label slot="end">
+          {{value}}
+        </ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col size="auto">
+      <ion-item class="weekly-label" lines="none">
+        <ion-label>
+          / week
+        </ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>

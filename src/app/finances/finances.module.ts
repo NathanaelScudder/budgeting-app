@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FinancesPage } from './finances.page';
-import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { FinancesPageRoutingModule } from './finances-routing.module';
 
@@ -12,7 +11,6 @@ import { FinancesPageRoutingModule } from './finances-routing.module';
     IonicModule,
     CommonModule,
     FormsModule,
-    ExploreContainerComponentModule,
     FinancesPageRoutingModule
   ],
   declarations: [FinancesPage]

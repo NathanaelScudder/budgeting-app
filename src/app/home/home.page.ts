@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss']
 })
 export class HomePage {
+  predictedIncomeLabel:string = "Predicted Income";
+  expendituresLabel:string = "Expenditures";
+  pocketedSavingsLabel:string = "Pocketed Savings";
 
   constructor() {}
 
