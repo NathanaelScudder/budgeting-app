@@ -12,4 +12,11 @@
       <ion-title size="large">Finances</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <app-entry-header [type]="incomeType"></app-entry-header>
+  <app-entry-area></app-entry-area>
+  <app-finance-entry-card></app-finance-entry-card>
+  <app-entry-header [type]="expenseType"></app-entry-header>
+  <app-entry-area></app-entry-area>
+
 </ion-content>

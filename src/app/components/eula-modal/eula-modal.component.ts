@@ -24,9 +24,12 @@ export class EulaModalComponent implements OnInit {
     this.canDismiss = ev.detail.checked;
   }
 
-  setOpen(isOpen: boolean) 
+  closeModal()
   {
-    this.isModalOpen = isOpen;
+    if(this.canDismiss)
+    {
+      this.isModalOpen = false;
+    }
   }
 
 }

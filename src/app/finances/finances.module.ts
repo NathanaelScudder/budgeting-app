@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { FinancesPage } from './finances.page';
 
 import { FinancesPageRoutingModule } from './finances-routing.module';
+import { EntryHeaderComponent } from '../components/entry-header/entry-header.component';
+import { EntryAreaComponent } from '../components/entry-area/entry-area.component';
+import { FinanceEntryCardComponent } from '../components/finance-entry-card/finance-entry-card.component';
 
 @NgModule({
   imports: [
@@ -13,6 +16,11 @@ import { FinancesPageRoutingModule } from './finances-routing.module';
     FormsModule,
     FinancesPageRoutingModule
   ],
-  declarations: [FinancesPage]
+  declarations: [
+    FinancesPage,
+    EntryAreaComponent, 
+    EntryHeaderComponent, 
+    FinanceEntryCardComponent
+  ]
 })
 export class FinancesPageModule {}
