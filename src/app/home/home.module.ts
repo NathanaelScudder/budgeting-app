@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePageContentAreaComponent } from '../components/home-page-content-area/home-page-content-area.component';
+import { EulaModalComponent } from '../components/eula-modal/eula-modal.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { HomePageContentAreaComponent } from '../components/home-page-content-ar
     FormsModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage, HomePageContentAreaComponent]
+  declarations: [HomePage, HomePageContentAreaComponent, EulaModalComponent]
 })
 export class HomePageModule {}

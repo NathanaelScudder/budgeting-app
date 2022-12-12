@@ -10,6 +10,10 @@ export class HomePage {
   expendituresLabel:string = "Expenditures";
   pocketedSavingsLabel:string = "Pocketed Savings";
 
+  
+
   constructor() {}
+
+  
 
 }
