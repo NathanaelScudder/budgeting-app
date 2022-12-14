@@ -24,3 +24,23 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.money-text-area {
+    --background: var(--background);
+    --color: #fff;
+  
+    --border-color: #fff;
+    --border-width: 2px;
+  
+    --border-radius: 20px;
+  
+    --ripple-color: rgb(34, 0, 128);
+  
+    --detail-icon-color: white;
+    --detail-icon-opacity: 1;
+    --detail-icon-font-size: 20px;
+}
+
+.backgroundless-item {
+    --background: var(--background);
+}

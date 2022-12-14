@@ -62,6 +62,25 @@ export class FinancesService {
     }
   }
 
+  public static removeEntryByEquality(entry:FinancesEntry):void
+  {
+    switch(entry.getType())
+    {
+      case FinancesEntry.EntryType.INCOME_ENTRY:
+        FinancesService.allIncomeData = FinancesService.allIncomeData.filter((value, i, arr) => {
+          return !entry.equals(value);
+        });
+        break;
+      case FinancesEntry.EntryType.EXPENSE_ENTRY:
+        FinancesService.allExpenseData = FinancesService.allExpenseData.filter((value, i, arr) => {
+          return !entry.equals(value);
+        });
+        break;
+      default:
+        return;
+    }
+  }
+
   public static addDefaultIncomeEntry():boolean
   {
     return FinancesService.addEntry(

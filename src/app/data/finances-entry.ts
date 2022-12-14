@@ -1,9 +1,12 @@
+import { nanoid } from "nanoid";
+
 export class FinancesEntry
 {
     private label:string;
     private value:number;
     private type:FinancesEntry.EntryType;
     private factor:FinancesEntry.EntryFactor;
+    private id:string;
 
     constructor(label:string, value:number, type:FinancesEntry.EntryType, factor:FinancesEntry.EntryFactor)
     {
@@ -11,6 +14,7 @@ export class FinancesEntry
         this.value = value;
         this.type = type;
         this.factor = factor;
+        this.id = nanoid(8);
     }
 
     public setLabel(label:string):void
@@ -51,6 +55,21 @@ export class FinancesEntry
     public getFactor():FinancesEntry.EntryFactor
     {
         return this.factor;
+    }
+
+    public getFactorString():string
+    {
+        return FinancesEntry.EntryFactor[this.factor];
+    }
+
+    public getID():string
+    {
+        return this.id;
+    }
+
+    public equals(entry:FinancesEntry):boolean
+    {
+        return this.getID() == entry.getID();
     }
 }
 
