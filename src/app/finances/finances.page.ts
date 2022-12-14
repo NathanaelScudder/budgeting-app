@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FinancesEntry } from '../data/finances-entry';
+import { FinancesService } from '../services/finances.service';
 
 @Component({
   selector: 'app-finances',
@@ -8,7 +9,7 @@ import { FinancesEntry } from '../data/finances-entry';
 })
 export class FinancesPage {
 
-  constructor() {}
+  constructor(private financesService:FinancesService) {}
 
   get incomeType():FinancesEntry.EntryType
   {
@@ -18,6 +19,16 @@ export class FinancesPage {
   get expenseType():FinancesEntry.EntryType
   {
     return FinancesEntry.EntryType.EXPENSE_ENTRY;
+  }
+
+  get allIncomeEntries():FinancesEntry[]
+  {
+    return FinancesService.allIncomeData;
+  }
+
+  get allExpenseEntries():FinancesEntry[]
+  {
+    return FinancesService.allExpenseData;
   }
 
 }

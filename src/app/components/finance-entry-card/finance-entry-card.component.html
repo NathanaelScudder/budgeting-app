@@ -1,4 +1,35 @@
-<div class="bg-dark">
+<ion-card>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <p class="mt-2">{{entryData.getLabel()}}</p>
+      </div>
+      <div class="col-auto">
+        <p class="mt-2">{{entryData.getFactorString()}}</p>
+      </div>
+      <div class="col-auto">
+        <ion-button fill="clear" color="danger" (click)="onDelete()">
+          <ion-icon name="close-circle-outline" color="danger"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <ion-item lines="none" class="money-text-area">
+          <ion-icon name="logo-usd" slot="start" size="small"></ion-icon>
+          <ion-label slot="end">
+            {{entryData.getValue().toFixed(2)}}
+          </ion-label>
+        </ion-item>
+      </div>
+      <div class="col-auto">
+        <ion-button fill="clear" color="primary" (click)="onEdit()">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </div>
+  <!--
   <ion-grid>
     <ion-row class="ion-align-items-center">
       <ion-col>
@@ -7,9 +38,12 @@
         </ion-label>
       </ion-col>
       <ion-col size="auto">
-        <ion-button fill="clear" color="primary" (click)="onEdit()">
-          <ion-icon name="create-outline"></ion-icon>
-        </ion-button>
+        <ion-item class="backgroundless-item" lines="none">
+          <ion-label>
+            {{entryData.getFactorString()}}
+          </ion-label>
+        </ion-item>
+        
       </ion-col>
       <ion-col size="auto">
         <ion-button fill="clear" color="danger" (click)="onDelete()">
@@ -18,21 +52,20 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="8">
-        <ion-item lines="none">
+      <ion-col>
+        <ion-item lines="none" class="money-text-area">
           <ion-icon name="logo-usd" slot="start" size="small"></ion-icon>
           <ion-label slot="end">
             {{entryData.getValue().toFixed(2)}}
           </ion-label>
         </ion-item>
       </ion-col>
-      <ion-col size="4">
-        <ion-item class="backgroundless-item" lines="none">
-          <ion-label>
-            {{entryData.getFactorString()}}
-          </ion-label>
-        </ion-item>
+      <ion-col size="auto">
+        <ion-button fill="clear" color="primary" (click)="onEdit()">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
-</div>
+  -->
+</ion-card>

@@ -1,3 +1,10 @@
-<p>
-  entry-area works!
-</p>
+<ion-card *ngIf="entries.length == 0">
+  <ion-card-content>
+    <p>No Entries Available</p>
+    <p>Add an entry using the green add button</p>
+  </ion-card-content>
+</ion-card>
+
+<div *ngIf="entries.length != 0">
+  <app-finance-entry-card *ngFor="let entry of entries" [entryData]="entry"></app-finance-entry-card>
+</div>

@@ -6,8 +6,8 @@ import { FinancesEntry } from '../data/finances-entry';
 })
 export class FinancesService {
   private static MAX_NUM_ENTRIES:number = 50;
-  private static allIncomeData:FinancesEntry[] = [];
-  private static allExpenseData:FinancesEntry[] = [];
+  public static allIncomeData:FinancesEntry[] = [];
+  public static allExpenseData:FinancesEntry[] = [];
 
   constructor() { }
   
@@ -84,7 +84,7 @@ export class FinancesService {
   public static addDefaultIncomeEntry():boolean
   {
     return FinancesService.addEntry(
-      new FinancesEntry(`Income #${FinancesService.allIncomeData.length}`,
+      new FinancesEntry(`Income #${FinancesService.allIncomeData.length + 1}`,
                         0,
                         FinancesEntry.EntryType.INCOME_ENTRY, 
                         FinancesEntry.EntryFactor.Once));
@@ -93,7 +93,7 @@ export class FinancesService {
   public static addDefaultExpenseEntry():boolean
   {
     return FinancesService.addEntry(
-      new FinancesEntry(`Expense #${FinancesService.allExpenseData.length}`, 
+      new FinancesEntry(`Expense #${FinancesService.allExpenseData.length + 1}`, 
                         0, 
                         FinancesEntry.EntryType.EXPENSE_ENTRY, 
                         FinancesEntry.EntryFactor.Once));
