@@ -106,7 +106,7 @@ export class FinancesService {
     return this.allIncomeData.length < this.MAX_NUM_ENTRIES;
   }
 
-  public static canExpenseIncomeEntry():boolean
+  public static canAddExpenseEntry():boolean
   {
     return this.allExpenseData.length < this.MAX_NUM_ENTRIES;
   }

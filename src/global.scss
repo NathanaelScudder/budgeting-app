@@ -44,3 +44,8 @@
 .backgroundless-item {
     --background: var(--background);
 }
+
+ion-item {
+    --padding-start: 0px;
+    --inner-padding-start: 10px;
+}

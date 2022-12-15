@@ -67,6 +67,14 @@ export class FinancesEntry
         return this.id;
     }
 
+    public clone(entry:FinancesEntry):void
+    {
+        this.value = entry.value;
+        this.type = entry.type;
+        this.factor = entry.factor;
+        this.label = entry.label;
+    }
+
     public equals(entry:FinancesEntry):boolean
     {
         return this.getID() == entry.getID();

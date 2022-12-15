@@ -63,7 +63,7 @@ export class EntryHeaderComponent implements OnInit {
         break;
       case FinancesEntry.EntryType.EXPENSE_ENTRY:
         //var hadEntrySpace:boolean = FinancesService.addDefaultExpenseEntry(); 
-        if(!FinancesService.canExpenseIncomeEntry()) 
+        if(!FinancesService.canAddExpenseEntry()) 
         {
           this.presentToast("Cannot exceed expense entry limit!", 1500, "middle");
           return;
@@ -74,6 +74,11 @@ export class EntryHeaderComponent implements OnInit {
     }
 
     this.inputModalIsOpen = true;
+  }
+
+  newEntrySubmitted(entry: FinancesEntry)
+  {
+    FinancesService.addEntry(entry);
   }
 
   // Adapted from https://ionicframework.com/docs/api/toast

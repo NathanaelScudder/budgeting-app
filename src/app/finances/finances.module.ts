@@ -1,7 +1,7 @@
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FinancesPage } from './finances.page';
 
 import { FinancesPageRoutingModule } from './finances-routing.module';
@@ -15,7 +15,8 @@ import { EntryModalComponent } from '../components/entry-modal/entry-modal.compo
     IonicModule,
     CommonModule,
     FormsModule,
-    FinancesPageRoutingModule
+    FinancesPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [
     FinancesPage,
