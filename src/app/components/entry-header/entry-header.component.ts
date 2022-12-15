@@ -11,6 +11,8 @@ import { FinancesService } from 'src/app/services/finances.service';
 export class EntryHeaderComponent implements OnInit {
   @Input() type:FinancesEntry.EntryType = FinancesEntry.EntryType.INCOME_ENTRY;
 
+  inputModalIsOpen:boolean = false;
+
   constructor(private toastController: ToastController) { }
 
   ngOnInit() {}
@@ -52,16 +54,26 @@ export class EntryHeaderComponent implements OnInit {
     switch(this.type)
     {
       case FinancesEntry.EntryType.INCOME_ENTRY:
-        var hadEntrySpace:boolean = FinancesService.addDefaultIncomeEntry(); 
-        if(!hadEntrySpace) {this.presentToast("Cannot exceed income entry limit!", 1500, "middle")} 
+        //var hadEntrySpace:boolean = FinancesService.addDefaultIncomeEntry(); 
+        if(!FinancesService.canAddIncomeEntry()) 
+        {
+          this.presentToast("Cannot exceed income entry limit!", 1500, "middle");
+          return;
+        } 
         break;
       case FinancesEntry.EntryType.EXPENSE_ENTRY:
-        var hadEntrySpace:boolean = FinancesService.addDefaultExpenseEntry(); 
-        if(!hadEntrySpace) {this.presentToast("Cannot exceed expense entry limit!", 1500, "middle")} 
+        //var hadEntrySpace:boolean = FinancesService.addDefaultExpenseEntry(); 
+        if(!FinancesService.canExpenseIncomeEntry()) 
+        {
+          this.presentToast("Cannot exceed expense entry limit!", 1500, "middle");
+          return;
+        } 
         break;
       default:
         return;
     }
+
+    this.inputModalIsOpen = true;
   }
 
   // Adapted from https://ionicframework.com/docs/api/toast

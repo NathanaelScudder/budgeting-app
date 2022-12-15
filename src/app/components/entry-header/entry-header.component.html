@@ -1,9 +1,9 @@
 <ion-item>
   <ion-label>{{headerLabel}}</ion-label>
   <ion-label slot="end">{{entryLimitString}}</ion-label>
-  <ion-button [id]="headerLabel" slot="end" fill="empty">
+  <ion-button slot="end" fill="empty" (click)="addNewEntry()">
     <ion-icon name="add-circle-outline" color="success"></ion-icon>
   </ion-button>
 </ion-item>
 
-<app-entry-modal [triggerButtonID]="headerLabel" [isEditing]="false" [entryType]="type"></app-entry-modal>
+<app-entry-modal [(isOpen)]='inputModalIsOpen' [isEditing]="false" [entryType]="type"></app-entry-modal>

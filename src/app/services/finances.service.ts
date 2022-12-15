@@ -98,4 +98,16 @@ export class FinancesService {
                         FinancesEntry.EntryType.EXPENSE_ENTRY, 
                         FinancesEntry.EntryFactor.Once));
   }
+
+  
+
+  public static canAddIncomeEntry():boolean
+  {
+    return this.allIncomeData.length < this.MAX_NUM_ENTRIES;
+  }
+
+  public static canExpenseIncomeEntry():boolean
+  {
+    return this.allExpenseData.length < this.MAX_NUM_ENTRIES;
+  }
 }

@@ -1,4 +1,4 @@
-<ion-modal trigger="triggerButtonID" (willDismiss)="onWillDismiss($event)">
+<ion-modal [isOpen]="isOpen">
   <ng-template>
     <ion-header>
       <ion-toolbar>
@@ -22,16 +22,15 @@
           placeholder="Select Frequency"
           (ionChange)="setFrequency($event)"
         >
-          <ion-select-option value="Once">Once</ion-select-option>
-          <ion-select-option value="Daily">Daily</ion-select-option>
-          <ion-select-option value="Weekly">Weekly</ion-select-option>
-          <ion-select-option value="Monthly">Monthly</ion-select-option>
+          <ion-select-option selected value="0">Once</ion-select-option>
+          <ion-select-option value="1">Daily</ion-select-option>
+          <ion-select-option value="2">Weekly</ion-select-option>
+          <ion-select-option value="3">Monthly</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Value</ion-label>
-        <ion-icon name="logo-usd" slot="start" size="small"></ion-icon>
-        <ion-input type="number" placeholder="0.00" [(ngModel)]="value"></ion-input>
+        <ion-label position="stacked">Dollar Value</ion-label>
+        <ion-input type="text" placeholder="Amount" [(ngModel)]="value"></ion-input>
       </ion-item>
     </ion-content>
   </ng-template>
