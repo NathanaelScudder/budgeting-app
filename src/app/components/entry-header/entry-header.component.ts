@@ -46,7 +46,7 @@ export class EntryHeaderComponent implements OnInit {
         numEntries = 0;
     }
 
-    return (numEntries < 10) ? `0${numEntries}/${FinancesService.getMaxNumEntries()}` : `${numEntries}/${FinancesService.getMaxNumEntries()}`
+    return `${numEntries}/${FinancesService.getMaxNumEntries()}`;
   }
 
   addNewEntry():void

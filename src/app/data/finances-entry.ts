@@ -1,6 +1,8 @@
 import { nanoid } from "nanoid";
 
-export class FinancesEntry
+import {Item} from 'linked-list'
+
+export class FinancesEntry extends Item
 {
     private label:string;
     private value:number;
@@ -10,6 +12,7 @@ export class FinancesEntry
 
     constructor(label:string, value:number, type:FinancesEntry.EntryType, factor:FinancesEntry.EntryFactor)
     {
+        super();
         this.label = label;
         this.value = value;
         this.type = type;
@@ -78,6 +81,13 @@ export class FinancesEntry
     public equals(entry:FinancesEntry):boolean
     {
         return this.getID() == entry.getID();
+    }
+
+    public override toString():string
+    {
+        return `${(this.type == FinancesEntry.EntryType.INCOME_ENTRY) ? "Income entry" : "Expense entry"} for
+                ${this.label} at $${this.value}${(this.factor == FinancesEntry.EntryFactor.Once) ? "" : ", " + this.getFactorString()}
+               `
     }
 }
 

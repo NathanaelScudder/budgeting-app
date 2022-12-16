@@ -1,16 +1,28 @@
 import { Injectable } from '@angular/core';
 import { FinancesEntry } from '../data/finances-entry';
 
+import {List} from 'linked-list'
+
 @Injectable({
   providedIn: 'root'
 })
 export class FinancesService {
-  private static MAX_NUM_ENTRIES:number = 50;
-  public static allIncomeData:FinancesEntry[] = [];
-  public static allExpenseData:FinancesEntry[] = [];
+  private static MAX_NUM_ENTRIES:number = 999;
+  private static allIncomeData:List = new List();
+  private static allExpenseData:List = new List();
 
   constructor() { }
   
+  public static getAllIncomeData():List
+  {
+    return FinancesService.allIncomeData;
+  }
+
+  public static getAllExpenseData():List
+  {
+    return FinancesService.allExpenseData;
+  }
+
   public static getMaxNumEntries():number
   {
     return this.MAX_NUM_ENTRIES;
@@ -18,12 +30,12 @@ export class FinancesService {
 
   public static getNumIncomeEntries():number
   {
-    return this.allIncomeData.length;
+    return this.allIncomeData.size;
   }
 
   public static getNumExpenseEntries():number
   {
-    return this.allExpenseData.length;
+    return this.allExpenseData.size;
   }
 
   public static addEntry(entry:FinancesEntry):boolean
@@ -32,82 +44,47 @@ export class FinancesService {
     {
       case FinancesEntry.EntryType.INCOME_ENTRY:
         if(FinancesService.getNumIncomeEntries() == FinancesService.MAX_NUM_ENTRIES) {return false;}
-        this.allIncomeData.unshift(entry);
+        this.allIncomeData.prepend(entry);
         return true;
       case FinancesEntry.EntryType.EXPENSE_ENTRY:
         if(FinancesService.getNumExpenseEntries() == FinancesService.MAX_NUM_ENTRIES) {return false;}
-        this.allExpenseData.unshift(entry);
+        this.allExpenseData.prepend(entry);
         return true;
       default:
         return false;
     }
   }
 
-  public static removeEntry(index:number, type:FinancesEntry.EntryType):void
+  public static removeEntry(entry:FinancesEntry):void
   {
-    switch(type)
-    {
-      case FinancesEntry.EntryType.INCOME_ENTRY:
-        FinancesService.allIncomeData = FinancesService.allIncomeData.filter((value, i, arr) => {
-          return i != index;
-        });
-        break;
-      case FinancesEntry.EntryType.EXPENSE_ENTRY:
-        FinancesService.allExpenseData = FinancesService.allExpenseData.filter((value, i, arr) => {
-          return i != index;
-        });
-        break;
-      default:
-        return;
-    }
+    entry.detach();
   }
 
-  public static removeEntryByEquality(entry:FinancesEntry):void
+  public static buildDefaultIncomeEntry():FinancesEntry
   {
-    switch(entry.getType())
-    {
-      case FinancesEntry.EntryType.INCOME_ENTRY:
-        FinancesService.allIncomeData = FinancesService.allIncomeData.filter((value, i, arr) => {
-          return !entry.equals(value);
-        });
-        break;
-      case FinancesEntry.EntryType.EXPENSE_ENTRY:
-        FinancesService.allExpenseData = FinancesService.allExpenseData.filter((value, i, arr) => {
-          return !entry.equals(value);
-        });
-        break;
-      default:
-        return;
-    }
+    return new FinancesEntry(`Income #${FinancesService.getNumIncomeEntries() + 1}`,
+                              0,
+                              FinancesEntry.EntryType.INCOME_ENTRY, 
+                              FinancesEntry.EntryFactor.Once);
   }
 
-  public static addDefaultIncomeEntry():boolean
+  public static buildDefaultExpenseEntry():FinancesEntry
   {
-    return FinancesService.addEntry(
-      new FinancesEntry(`Income #${FinancesService.allIncomeData.length + 1}`,
-                        0,
-                        FinancesEntry.EntryType.INCOME_ENTRY, 
-                        FinancesEntry.EntryFactor.Once));
-  }
-
-  public static addDefaultExpenseEntry():boolean
-  {
-    return FinancesService.addEntry(
-      new FinancesEntry(`Expense #${FinancesService.allExpenseData.length + 1}`, 
-                        0, 
-                        FinancesEntry.EntryType.EXPENSE_ENTRY, 
-                        FinancesEntry.EntryFactor.Once));
+    return new FinancesEntry(`Expense #${FinancesService.getNumExpenseEntries() + 1}`, 
+                              0, 
+                              FinancesEntry.EntryType.EXPENSE_ENTRY, 
+                              FinancesEntry.EntryFactor.Once);
   }
 
   
 
   public static canAddIncomeEntry():boolean
   {
-    return this.allIncomeData.length < this.MAX_NUM_ENTRIES;
+    return FinancesService.getNumIncomeEntries() < this.MAX_NUM_ENTRIES;
   }
 
   public static canAddExpenseEntry():boolean
   {
-    return this.allExpenseData.length < this.MAX_NUM_ENTRIES;
+    return FinancesService.getNumExpenseEntries() < this.MAX_NUM_ENTRIES;
   }
 }

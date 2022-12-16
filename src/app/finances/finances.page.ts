@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FinancesEntry } from '../data/finances-entry';
 import { FinancesService } from '../services/finances.service';
 
+import {List} from 'linked-list'
+
 @Component({
   selector: 'app-finances',
   templateUrl: 'finances.page.html',
@@ -21,14 +23,14 @@ export class FinancesPage {
     return FinancesEntry.EntryType.EXPENSE_ENTRY;
   }
 
-  get allIncomeEntries():FinancesEntry[]
+  get allIncomeEntries():List
   {
-    return FinancesService.allIncomeData;
+    return FinancesService.getAllIncomeData();
   }
 
-  get allExpenseEntries():FinancesEntry[]
+  get allExpenseEntries():List
   {
-    return FinancesService.allExpenseData;
+    return FinancesService.getAllExpenseData();
   }
 
 }
