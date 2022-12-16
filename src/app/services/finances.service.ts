@@ -62,7 +62,7 @@ export class FinancesService {
 
   public static buildDefaultIncomeEntry():FinancesEntry
   {
-    return new FinancesEntry(`Income #${FinancesService.getNumIncomeEntries() + 1}`,
+    return new FinancesEntry(`Income Entry`,
                               0,
                               FinancesEntry.EntryType.INCOME_ENTRY, 
                               FinancesEntry.EntryFactor.Once);
@@ -70,7 +70,7 @@ export class FinancesService {
 
   public static buildDefaultExpenseEntry():FinancesEntry
   {
-    return new FinancesEntry(`Expense #${FinancesService.getNumExpenseEntries() + 1}`, 
+    return new FinancesEntry(`Expense Entry`, 
                               0, 
                               FinancesEntry.EntryType.EXPENSE_ENTRY, 
                               FinancesEntry.EntryFactor.Once);

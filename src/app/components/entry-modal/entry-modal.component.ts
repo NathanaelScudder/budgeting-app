@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { FinancesEntry } from 'src/app/data/finances-entry';
-import { SelectChangeEventDetail } from '@ionic/core';
-import { FinancesService } from 'src/app/services/finances.service';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -13,7 +11,7 @@ export class EntryModalComponent implements OnInit {
   @Input() isOpen:boolean = false;
   @Output() isOpenChange = new EventEmitter<boolean>();
 
-  @Input() entryType!:FinancesEntry.EntryType;
+  @Input() entryData!:FinancesEntry;
   @Input() modalHeader:string = "Entry";
 
   @Output() onEntrySubmit = new EventEmitter<FinancesEntry>();
@@ -26,7 +24,10 @@ export class EntryModalComponent implements OnInit {
 
   constructor(private fb:FormBuilder) { }
 
-  ngOnInit() {}
+  ngOnInit() 
+  {
+    this.refreshModal();
+  }
 
   get financeFactors():(string | FinancesEntry.EntryFactor)[]
   {
@@ -38,13 +39,15 @@ export class EntryModalComponent implements OnInit {
     return FinancesEntry.EntryFactor[index];
   }
 
-  cancel() 
+  cancel():void
   {
+    this.refreshModal();
+
     this.isOpen = false;
     this.isOpenChange.emit(this.isOpen);
   }
 
-  confirm() 
+  confirm():void
   {
     var entryName = this.entryForm.get("entryName");
     var entryValue = this.entryForm.get("entryValue");
@@ -61,19 +64,18 @@ export class EntryModalComponent implements OnInit {
         this.onEntrySubmit.emit(
           new FinancesEntry(entryNameData, 
                             parseFloat(entryValueData), 
-                            this.entryType, 
+                            this.entryData.getType(), 
                             frequencyData));
       }
     }
 
-    /*
-    this.onEntrySubmit.emit(
-      new FinancesEntry(entryName, 
-                        entryValue, 
-                        this.entryType, 
-                        frequency));
-    */
-
     this.cancel();
+  }
+
+  refreshModal():void
+  {
+    this.entryForm.get("entryName")?.setValue(`${this.entryData.getLabel()}`);
+    this.entryForm.get("entryValue")?.setValue(`${this.entryData.getValue()}`);
+    this.entryForm.get("frequency")?.setValue(this.entryData.getFactor());
   }
 }

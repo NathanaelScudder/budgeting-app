@@ -9,18 +9,22 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./finance-entry-card.component.scss'],
 })
 export class FinanceEntryCardComponent implements OnInit {
-  @Input() entryData:FinancesEntry = new FinancesEntry(`PLACEHOLDER`,
-                                                        0,
-                                                        FinancesEntry.EntryType.INCOME_ENTRY, 
-                                                        FinancesEntry.EntryFactor.Once);
+  @Input() entryData!:FinancesEntry;
+
+  editModalIsOpen:boolean = false;
 
   constructor(private alertController:AlertController) { }
 
   ngOnInit() {}
 
-  onEdit():void
+  presentEditModal()
   {
-    console.log("onEdit");
+    this.editModalIsOpen = true;
+  }
+
+  onEdit(newEntryData:FinancesEntry):void
+  {
+    this.entryData.clone(newEntryData);
   }
 
   // Adapted from https://ionicframework.com/docs/api/alert
