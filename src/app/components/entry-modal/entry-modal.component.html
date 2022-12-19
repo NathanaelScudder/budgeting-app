@@ -13,10 +13,12 @@
         <ion-item>
           <ion-label position="stacked">Entry name</ion-label>
           <ion-input type="text" placeholder="Entry name" formControlName="entryName"></ion-input>
+          <ion-note slot="error">Entry name cannot contain more than {{ENTRY_NAME_MAX_LENGTH}} characters.</ion-note>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Dollar Value</ion-label>
-          <ion-input type="text" placeholder="Amount" formControlName="entryValue"></ion-input>
+          <ion-input type="text" inputmode="numeric" placeholder="Amount" formControlName="entryValue"></ion-input>
+          <ion-note slot="error">Dollar value must be a positive non-zero number with at most {{VALUE_DIGIT_LIMIT}} digits, and up to {{VALUE_DECIMAL_LIMIT}} optional decimal places.</ion-note>
         </ion-item>
         <ion-item lines="none">
           <ion-label position="stacked" class="mb-2">Frequency</ion-label>
