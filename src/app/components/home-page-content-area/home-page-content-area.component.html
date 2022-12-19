@@ -5,8 +5,14 @@
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col size="8">
-      <ion-progress-bar style="height: 10px" [value]="percentage" [type]="progressType"></ion-progress-bar>
+    <ion-col *ngIf="mode == incomeMode" size="8" class="income-progress-bar">
+      <ion-progress-bar style="height: 10px" [value]="percentage"></ion-progress-bar>
+    </ion-col>
+    <ion-col *ngIf="mode == expenditureMode" size="8" class="expenditure-progress-bar">
+      <ion-progress-bar style="height: 10px" [value]="percentage"></ion-progress-bar>
+    </ion-col>
+    <ion-col *ngIf="mode == pocketedMode" size="8" class="pocketed-progress-bar">
+      <ion-progress-bar style="height: 10px" [value]="percentage"></ion-progress-bar>
     </ion-col>
   </ion-row>
   <ion-row>
@@ -14,7 +20,7 @@
       <ion-item class="money-text-area" lines="none">
         <ion-icon name="logo-usd" slot="start" size="small"></ion-icon>
         <ion-label slot="end">
-          {{value}}
+          {{value.toFixed(2)}}
         </ion-label>
       </ion-item>
     </ion-col>
