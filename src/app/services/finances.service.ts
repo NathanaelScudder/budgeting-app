@@ -70,6 +70,13 @@ export class FinancesService {
     FinancesService.removeEntryValue(entry);
   }
 
+  public static editEntry(oldEntryData:FinancesEntry, newEntryData:FinancesEntry):void
+  {
+    FinancesService.removeEntryValue(oldEntryData);
+    oldEntryData.clone(newEntryData);
+    FinancesService.addEntryValue(oldEntryData);
+  }
+
   public static buildDefaultIncomeEntry():FinancesEntry
   {
     return new FinancesEntry(`Income Entry`,
@@ -110,11 +117,21 @@ export class FinancesService {
 
   public static getTotalIncomePercent():number
   {
+    if((FinancesService.totalIncomeValue + FinancesService.totalExpenseValue) == 0)
+    {
+      return 0;
+    }
+
     return FinancesService.totalIncomeValue / (FinancesService.totalIncomeValue + FinancesService.totalExpenseValue);
   }
 
   public static getTotalExpensePercent():number
   {
+    if(FinancesService.totalIncomeValue == 0)
+    {
+      return 0;
+    }
+
     return FinancesService.totalExpenseValue / FinancesService.totalIncomeValue;
   }
 
@@ -140,6 +157,11 @@ export class FinancesService {
       case FinancesEntry.EntryType.EXPENSE_ENTRY:
         FinancesService.totalExpenseValue += value;
     }
+
+    console.log(`Income value: ${FinancesService.getTotalIncomeValue()}`);
+    console.log(`Income percentage: ${FinancesService.getTotalIncomePercent()}`);
+    console.log(`Expense value: ${FinancesService.getTotalExpenseValue()}`);
+    console.log(`Expense percentage: ${FinancesService.getTotalExpensePercent()}`);
   }
 
   private static normalizeEntryValue(entry: FinancesEntry):number

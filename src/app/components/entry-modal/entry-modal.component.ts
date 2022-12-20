@@ -82,7 +82,7 @@ export class EntryModalComponent implements OnInit {
           new FinancesEntry(entryNameData, 
                             parseFloat(entryValueData), 
                             this.entryData.getType(), 
-                            frequencyData));
+                            parseInt(frequencyData)));
       }
     }
 

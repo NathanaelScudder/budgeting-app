@@ -6,22 +6,26 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./home-page-content-area.component.scss'],
 })
 export class HomePageContentAreaComponent implements OnInit {
-  public static MODE_INCOME:number = 0;
-  public static MODE_EXPENDITURE:number = 1;
-  public static MODE_POCKETED:number = 2;
+  private static MODE_INCOME:number = 0;
+  private static MODE_EXPENDITURE:number = 1;
+  private static MODE_POCKETED:number = 2;
+  private static INDETERMINATE:string = "indeterminate";
+  private static DETERMINATE:string = "determinate";
 
-  @Input() label:string;
-  @Input() value:number;
-  @Input() percentage:number;
+  @Input() label!:string;
+  @Input() value!:number;
+  @Input() percentage!:number;
+  @Input() isIndeterminate:boolean = false;
 
-  @Input() mode: 0 | 1 | 2;
+  @Input() mode!: 0 | 1 | 2;
 
-  constructor() 
+  constructor() {}
+
+  ngOnInit() {}
+
+  get type():string
   {
-    this.label = "N\\A";
-    this.value = 0;
-    this.percentage = 0.0;
-    this.mode = 0;
+    return (this.isIndeterminate) ? HomePageContentAreaComponent.INDETERMINATE : HomePageContentAreaComponent.DETERMINATE;
   }
 
   get incomeMode():number
@@ -38,7 +42,4 @@ export class HomePageContentAreaComponent implements OnInit {
   {
     return HomePageContentAreaComponent.MODE_POCKETED;
   }
-
-  ngOnInit() {}
-
 }

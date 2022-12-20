@@ -24,7 +24,7 @@ export class FinanceEntryCardComponent implements OnInit {
 
   onEdit(newEntryData:FinancesEntry):void
   {
-    this.entryData.clone(newEntryData);
+    FinancesService.editEntry(this.entryData, newEntryData);
   }
 
   // Adapted from https://ionicframework.com/docs/api/alert

@@ -15,6 +15,11 @@ export class HomePage {
 
   constructor() {}
 
+  get isIndeterminate():boolean
+  {
+    return (FinancesService.getNumIncomeEntries() == 0) && (FinancesService.getNumExpenseEntries() == 0);
+  }
+
   get totalIncomeValue():number
   {
     return FinancesService.getTotalIncomeValue();
@@ -28,21 +33,23 @@ export class HomePage {
   get totalExpenseValue():number
   {
     return FinancesService.getTotalExpenseValue();
+    
   }
 
   get expensePercent():number
   {
     return FinancesService.getTotalExpensePercent();
+    
   }
 
   get pocketedValue():number
   {
-    return (FinancesService.getTotalIncomeValue() - FinancesService.getTotalExpenseValue());
+    return FinancesService.getTotalIncomeValue() - FinancesService.getTotalExpenseValue();
   }
 
   get pocketedPercent():number
   {
-    return 100 - FinancesService.getTotalExpensePercent();
+    return FinancesService.getTotalIncomePercent(); 
   }
 
 }

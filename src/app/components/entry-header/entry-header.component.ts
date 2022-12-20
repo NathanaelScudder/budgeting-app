@@ -9,13 +9,15 @@ import { FinancesService } from 'src/app/services/finances.service';
   styleUrls: ['./entry-header.component.scss'],
 })
 export class EntryHeaderComponent implements OnInit {
-  @Input() type:FinancesEntry.EntryType = FinancesEntry.EntryType.INCOME_ENTRY;
+  @Input() type!:FinancesEntry.EntryType;;
 
   nextNewEntryData!:FinancesEntry;
 
   inputModalIsOpen:boolean = false;
 
-  constructor(private toastController: ToastController) 
+  constructor(private toastController: ToastController) {}
+
+  ngOnInit() 
   {
     switch(this.type)
     {
@@ -27,8 +29,6 @@ export class EntryHeaderComponent implements OnInit {
         break;
     }
   }
-
-  ngOnInit() {}
 
   get headerLabel():string
   {
@@ -67,24 +67,22 @@ export class EntryHeaderComponent implements OnInit {
     switch(this.type)
     {
       case FinancesEntry.EntryType.INCOME_ENTRY:
-        //var hadEntrySpace:boolean = FinancesService.addDefaultIncomeEntry(); 
         if(!FinancesService.canAddIncomeEntry()) 
         {
           this.presentToast("Cannot exceed income entry limit!", 1500, "middle");
           return;
         } 
 
-        //this.nextNewEntryData = FinancesService.buildDefaultIncomeEntry();
+        this.nextNewEntryData = FinancesService.buildDefaultIncomeEntry();
         break;
       case FinancesEntry.EntryType.EXPENSE_ENTRY:
-        //var hadEntrySpace:boolean = FinancesService.addDefaultExpenseEntry(); 
         if(!FinancesService.canAddExpenseEntry()) 
         {
           this.presentToast("Cannot exceed expense entry limit!", 1500, "middle");
           return;
         }
 
-        //this.nextNewEntryData = FinancesService.buildDefaultExpenseEntry();
+        this.nextNewEntryData = FinancesService.buildDefaultExpenseEntry();
         break;
       default:
         return;

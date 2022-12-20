@@ -6,13 +6,13 @@
   </ion-row>
   <ion-row>
     <ion-col *ngIf="mode == incomeMode" size="8" class="income-progress-bar">
-      <ion-progress-bar style="height: 10px" [value]="percentage"></ion-progress-bar>
+      <ion-progress-bar style="height: 10px" [value]="percentage" [type]="type"></ion-progress-bar>
     </ion-col>
     <ion-col *ngIf="mode == expenditureMode" size="8" class="expenditure-progress-bar">
-      <ion-progress-bar style="height: 10px" [value]="percentage"></ion-progress-bar>
+      <ion-progress-bar style="height: 10px" [value]="percentage" [type]="type"></ion-progress-bar>
     </ion-col>
     <ion-col *ngIf="mode == pocketedMode" size="8" class="pocketed-progress-bar">
-      <ion-progress-bar style="height: 10px" [value]="percentage"></ion-progress-bar>
+      <ion-progress-bar style="height: 10px" [value]="percentage" [type]="type"></ion-progress-bar>
     </ion-col>
   </ion-row>
   <ion-row>

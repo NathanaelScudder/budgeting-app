@@ -11,7 +11,27 @@
   <app-eula-modal></app-eula-modal>
   -->
 
-  <app-home-page-content-area [label]="predictedIncomeLabel" [mode]="0" [value]="totalIncomeValue" [percentage]="incomePercent"></app-home-page-content-area>
-  <app-home-page-content-area [label]="expendituresLabel" [mode]="1" [value]="totalExpenseValue" [percentage]="expensePercent"></app-home-page-content-area>
-  <app-home-page-content-area [label]="pocketedSavingsLabel" [mode]="2" [value]="pocketedValue" [percentage]="pocketedPercent"></app-home-page-content-area>  
+  <app-home-page-content-area 
+    [label]="predictedIncomeLabel" 
+    [mode]="0" 
+    [value]="totalIncomeValue" 
+    [percentage]="incomePercent"
+    [isIndeterminate]="isIndeterminate"
+  ></app-home-page-content-area>
+
+  <app-home-page-content-area 
+    [label]="expendituresLabel" 
+    [mode]="1" 
+    [value]="totalExpenseValue" 
+    [percentage]="expensePercent"
+    [isIndeterminate]="isIndeterminate"
+  ></app-home-page-content-area>
+
+  <app-home-page-content-area 
+    [label]="pocketedSavingsLabel" 
+    [mode]="2" 
+    [value]="pocketedValue" 
+    [percentage]="pocketedPercent"
+    [isIndeterminate]="isIndeterminate"
+  ></app-home-page-content-area>  
 </ion-content>  
