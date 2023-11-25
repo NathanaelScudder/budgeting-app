@@ -16,7 +16,12 @@
 
 <p>How to run the project on your local machine, step-by-step.</p>
 
-<ol>
-    <li>Ensure you have Node, Angular, and Ionic installed on your device</li>
-    <li>Navgiate to the main directory in command-line, then run "npm install" and "npm update", and "ionic lab" in order to launch the application</li>
-</ol>
+<p>Firstly, ensure you have Node, Angular, and Ionic installed on your device.</p>
+
+<p>Navgiate to the main directory in command-line, then run:</p>
+
+```bash
+npm install
+# then
+ionic lab
+```
